@@ -30,5 +30,6 @@ public class Blocks implements Listener{
 		Location l = e.getEntity().getLocation();
 		World w = l.getWorld();
 		w.createExplosion(l, plugin.getConfig().getInt("explosionPower"));
+		e.getEntity().remove();
 	}
 }
