@@ -1,0 +1,6 @@
+# ExplosiveArrows by Nomic
+# Edit if arrows blow up on block or player contact.
+# Edit explosion power, default is 4.
+playerExplosions: true
+blockExplosions: true
+explosionPower: 4

@@ -12,6 +12,7 @@ public class Main extends JavaPlugin {
 	public void registerEvents() {
 		PluginManager pm = getServer().getPluginManager();
 
-		pm.registerEvents(new Event(), this);
+		pm.registerEvents(new Blocks(this), this);
+		pm.registerEvents(new Players(this), this);
 	}
 }
