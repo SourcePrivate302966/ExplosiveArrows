@@ -11,7 +11,6 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 public class Blocks implements Listener {
 
 	private Main plugin;
-
 	public Blocks(Main pl) {
 		plugin = pl;
 	}

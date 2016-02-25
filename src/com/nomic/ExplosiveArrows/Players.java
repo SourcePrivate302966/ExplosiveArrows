@@ -11,7 +11,6 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 public class Players implements Listener {
 	
 	private Main plugin;
-
 	public Players(Main pl) {
 		plugin = pl;
 	}
@@ -24,13 +23,19 @@ public class Players implements Listener {
 			return;
 		if (!(e.getDamager() instanceof Player))
 			return;
+		
 		Player p = (Player) e.getEntity();
+		Location l = p.getLocation();
+		World w = l.getWorld();
+		
 		if (!(p.hasPermission("arrow.explosive") || p.isOp()))
 			return;
 		if (!(e.getCause() == DamageCause.PROJECTILE))
 			return;
-		Location l = p.getLocation();
-		World w = l.getWorld();
+		if (Main.getWorldGuard() != null) {
+			if (!(Main.getWorldGuard().canBuild(p, l)))
+				return;
+		}
 		w.createExplosion(l, plugin.getConfig().getInt("explosionPower"));
 	}
 }
