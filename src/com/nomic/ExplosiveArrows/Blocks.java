@@ -11,6 +11,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 public class Blocks implements Listener {
 
 	private Main plugin;
+
 	public Blocks(Main pl) {
 		plugin = pl;
 	}
@@ -22,9 +23,11 @@ public class Blocks implements Listener {
 		Player p = (Player) e.getEntity().getShooter();
 		Location l = e.getEntity().getLocation();
 		World w = l.getWorld();
-		
-		if (!(Main.getWorldGuard().canBuild(p, l)))
-			return;
+
+		if (Main.getWorldGuard() != null) {
+			if (!(Main.getWorldGuard().canBuild(p, l)))
+				return;
+		}
 		if (!(e.getEntity().getShooter() instanceof Player))
 			return;
 		if (!(e.getEntity().getType() == EntityType.ARROW))
