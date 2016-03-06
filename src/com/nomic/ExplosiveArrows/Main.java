@@ -13,6 +13,7 @@ public class Main extends JavaPlugin {
 
 	public void onEnable() {
 		registerEvents();
+		registerConfig();
 	}
 
 	public void registerEvents() {
@@ -28,5 +29,10 @@ public class Main extends JavaPlugin {
 			return (WorldGuardPlugin) wg;
 		}
 		return null;
+	}
+	
+	private void registerConfig() {
+		getConfig().options().copyDefaults(true);
+		saveConfig();
 	}
 }
