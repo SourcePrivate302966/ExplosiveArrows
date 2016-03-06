@@ -28,7 +28,7 @@ public class Players implements Listener {
 		Player p = (Player) e.getEntity();
 		Location l = p.getLocation();
 		World w = l.getWorld();
-		if (p.isSneaking() && plugin.getConfig().getBoolean("disableOnSneak.true"))
+		if (p.isSneaking() && plugin.getConfig().get("disableOnSneak").equals(true))
 			return;
 		if (!(p.hasPermission("arrow.explosive") || p.isOp()))
 			return;

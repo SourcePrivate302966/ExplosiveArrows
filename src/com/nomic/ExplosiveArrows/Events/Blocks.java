@@ -24,7 +24,7 @@ public class Blocks implements Listener {
 		Player p = (Player) e.getEntity().getShooter();
 		Location l = e.getEntity().getLocation();
 		World w = l.getWorld();
-		if (p.isSneaking() && plugin.getConfig().getBoolean("disableOnSneak.true"))
+		if (p.isSneaking() && plugin.getConfig().get("disableOnSneak").equals(true))
 			return;
 		if (Main.getWorldGuard() != null) {
 			if (!(Main.getWorldGuard().canBuild(p, l)))
