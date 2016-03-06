@@ -4,3 +4,4 @@
 playerExplosions: true
 blockExplosions: true
 explosionPower: 4
+disableOnSneak: true
