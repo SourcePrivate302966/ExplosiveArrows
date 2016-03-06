@@ -1,4 +1,4 @@
-package com.nomic.ExplosiveArrows;
+package com.nomic.ExplosiveArrows.Events;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -7,6 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+
+import com.nomic.ExplosiveArrows.Main;
 
 public class Players implements Listener {
 	
@@ -23,11 +25,11 @@ public class Players implements Listener {
 			return;
 		if (!(e.getDamager() instanceof Player))
 			return;
-		
 		Player p = (Player) e.getEntity();
 		Location l = p.getLocation();
 		World w = l.getWorld();
-		
+		if (p.isSneaking() && plugin.getConfig().getBoolean("disableOnSneak.true"))
+			return;
 		if (!(p.hasPermission("arrow.explosive") || p.isOp()))
 			return;
 		if (!(e.getCause() == DamageCause.PROJECTILE))
