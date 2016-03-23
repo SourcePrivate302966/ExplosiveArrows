@@ -1,5 +1,7 @@
 package com.nomic.ExplosiveArrows.Events;
 
+import java.util.Random;
+
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -36,7 +38,28 @@ public class Blocks implements Listener {
 			return;
 		if (!(p.hasPermission("arrow.explosive") || p.isOp()))
 			return;
-		w.createExplosion(l, plugin.getConfig().getInt("explosionPower"));
-		e.getEntity().remove();
+		if (plugin.getConfig().get("drill").equals(false)) {
+			w.createExplosion(l, plugin.getConfig().getInt("explosionPower"));
+			e.getEntity().remove();
+		} else {
+			int chance = (1 + new Random().nextInt(plugin.getConfig().getInt("drillChance") - 1));
+			if (chance == 1) {
+				w.createExplosion(l, plugin.getConfig().getInt("explosionPower"));
+				Location l2 = new Location(l.getWorld(), l.getX(), l.getY() - 1, l.getZ());
+				w.createExplosion(l2, plugin.getConfig().getInt("explosionPower"));
+				Location l3 = new Location(l.getWorld(), l.getX(), l.getY() - 2, l.getZ());
+				w.createExplosion(l3, plugin.getConfig().getInt("explosionPower"));
+				Location l4 = new Location(l.getWorld(), l.getX(), l.getY() - 3, l.getZ());
+				w.createExplosion(l4, plugin.getConfig().getInt("explosionPower"));
+				Location l5 = new Location(l.getWorld(), l.getX(), l.getY() - 4, l.getZ());
+				w.createExplosion(l5, plugin.getConfig().getInt("explosionPower"));
+				Location l6 = new Location(l.getWorld(), l.getX(), l.getY() - 5, l.getZ());
+				w.createExplosion(l6, plugin.getConfig().getInt("explosionPower"));
+				e.getEntity().remove();
+			} else {
+				w.createExplosion(l, plugin.getConfig().getInt("explosionPower"));
+				e.getEntity().remove();
+			}
+		}
 	}
 }
